@@ -12,10 +12,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.liang.enums.StatusCodeEnum.*;
@@ -53,8 +50,10 @@ public class CollectionController {
     }
 
     @PostMapping("/delCollection")
-    public Result delCollection(long[] ids){
-        List<Long> idList = Arrays.stream(ids).boxed().collect(Collectors.toList());
+    public Result delCollection(String ids){
+        long id = Long.parseLong(ids);
+        List<Long> idList= Collections.singletonList(id);
+//        List<Long> idList = Arrays.stream(ids).boxed().collect(Collectors.toList());
         int i = collectionService.delCollection(idList);
         String msg = "成功删除"+i+"收藏";
         return Result.ok(msg);
@@ -64,6 +63,12 @@ public class CollectionController {
     public Result queryCollection(){
         List<Collection> collections = collectionService.queryCollection();
         return Result.ok(collections);
+    }
+
+    @PostMapping("/getCollection")
+    public Result getCollection(long id){
+        Collection collection=collectionService.getCollection(id);
+        return Result.ok(collection);
     }
 
 }

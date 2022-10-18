@@ -69,6 +69,7 @@ public class NoteServiceImpl implements NoteService {
             recyclebin.setCraeteTime(note.getCraeteTime());
             recyclebin.setModifiTime(note.getModifiTime());
             recyclebin.setUid(note.getUid());
+            recyclebin.setType(note.getType());
             i += recycleBinService.addRecycleBinNote(recyclebin);
         }
         return noteMapper.deleteBatchIds(noteIds);

@@ -9,4 +9,5 @@ public interface CollectionService {
     int addCollection(Note note);
     int delCollection(List<Long> collectionIds);
     List<Collection> queryCollection();
+    public Collection getCollection(long id);
 }

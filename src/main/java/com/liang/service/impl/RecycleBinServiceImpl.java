@@ -61,4 +61,9 @@ public class RecycleBinServiceImpl implements RecycleBinService {
         queryWrapper.eq("uid", UserHolder.getId());
         return recyclebinMapper.selectList(queryWrapper);
     }
+
+    @Override
+    public Recyclebin getRecycleBinNote(long id) {
+        return recyclebinMapper.selectById(id);
+    }
 }

@@ -5,12 +5,14 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
  *
+ * @author Liang
  * @TableName schedule
  */
 @TableName(value ="schedule")
@@ -31,7 +33,7 @@ public class Schedule implements Serializable {
     /**
      *
      */
-    private String scheduleTime;
+    private String scheduleDate;
 
     /**
      *
@@ -41,16 +43,19 @@ public class Schedule implements Serializable {
     /**
      *
      */
-    private String scheduleContent;
+    private String scheduleBeginTime;
 
     /**
      *
      */
-    private String craeteTime;
+    private String scheduleEndTime;
+    private String scheduleContent;
 
-    private boolean finish;
+
+    private boolean state;
 
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
+
 
 }

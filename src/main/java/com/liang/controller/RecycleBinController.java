@@ -49,4 +49,9 @@ public class RecycleBinController {
         return Result.ok(map);
     }
 
+    @PostMapping("/getRecycleBin")
+    public Result getRecycleBin(long id){
+        Recyclebin recycleBinNote = recycleBinService.getRecycleBinNote(id);
+        return Result.ok(recycleBinNote);
+    }
 }

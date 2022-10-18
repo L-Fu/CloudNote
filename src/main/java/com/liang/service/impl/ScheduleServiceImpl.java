@@ -8,9 +8,6 @@ import com.liang.util.UserHolder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 
@@ -20,19 +17,15 @@ public class ScheduleServiceImpl implements ScheduleService {
     private ScheduleMapper scheduleMapper;
 
     @Override
-    public List<Schedule> querySchedule() {
+    public List<Schedule> querySchedule(String date) {
         QueryWrapper<Schedule> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("uid", UserHolder.getId());
+        queryWrapper.like("ScheduleDate",date);
         return scheduleMapper.selectList(queryWrapper);
     }
 
     @Override
     public int addSchedule(Schedule schedule) {
-        Date day=new Date();
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        LocalDateTime time = LocalDateTime.parse(df.format(day));
-        schedule.setCraeteTime(String.valueOf(time));
-        schedule.setScheduleTime(String.valueOf(time));
         schedule.setUid(UserHolder.getId());
         return scheduleMapper.insert(schedule);
     }
@@ -46,5 +39,10 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public int delSchedule(List<Long> scheduleIds) {
         return scheduleMapper.deleteBatchIds(scheduleIds);
+    }
+
+    @Override
+    public Schedule getSchedule(long id) {
+        return scheduleMapper.selectById(id);
     }
 }

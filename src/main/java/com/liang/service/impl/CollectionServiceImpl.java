@@ -5,7 +5,6 @@ import com.liang.mapper.CollectionMapper;
 import com.liang.mapper.UserMapper;
 import com.liang.pojo.Collection;
 import com.liang.pojo.Note;
-import com.liang.pojo.User;
 import com.liang.service.CollectionService;
 import com.liang.util.UserHolder;
 import org.springframework.stereotype.Service;
@@ -33,6 +32,7 @@ public class CollectionServiceImpl implements CollectionService {
         collection.setNoteContent(note.getNoteContent());
         collection.setClassificID(note.getClassificID());
         collection.setUid(UserHolder.getId());
+        collection.setType(note.getType());
         Date day=new Date();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         LocalDateTime time = LocalDateTime.parse(df.format(day));
@@ -51,5 +51,11 @@ public class CollectionServiceImpl implements CollectionService {
         QueryWrapper<Collection> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("uid",UserHolder.getId());
         return collectionMapper.selectList(queryWrapper);
+    }
+
+
+    @Override
+    public Collection getCollection(long id){
+        return collectionMapper.selectById(id);
     }
 }

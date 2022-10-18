@@ -44,6 +44,8 @@ public class Note implements Serializable {
      */
     private String noteContent;
 
+    private String noteHtml;
+
     /**
      *
      */
@@ -54,8 +56,11 @@ public class Note implements Serializable {
      */
     private String modifiTime;
 
+    private int type;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 
 
 }
+

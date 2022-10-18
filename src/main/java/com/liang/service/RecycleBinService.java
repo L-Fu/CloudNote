@@ -12,4 +12,5 @@ public interface RecycleBinService {
     int delRecycleBinNote(List<Long> recyclebinIds);
     int recoveryNote(List<Long> recyclebins);
     List<Recyclebin> queryRecycleBinNote();
+    Recyclebin getRecycleBinNote(long id);
 }

@@ -1,16 +1,24 @@
 package com.liang;
 
 //import com.liang.e.UserDao;
+import com.liang.dto.UserDTO;
 import com.liang.mapper.CollectionMapper;
 import com.liang.mapper.UserMapper;
+import com.liang.pojo.Schedule;
 import com.liang.pojo.User;
+import com.liang.service.ScheduleService;
 import com.liang.service.UserService;
+import com.liang.util.UserHolder;
 import com.liang.vo.LoginVO;
+import io.github.furstenheim.CopyDown;
+import io.github.furstenheim.Options;
+import io.github.furstenheim.OptionsBuilder;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @SpringBootTest
 class CloudNoteApplicationTests {
@@ -19,21 +27,33 @@ class CloudNoteApplicationTests {
 //    private UserDao userMapper;
     private UserMapper userMapper;
     @Autowired
-    private UserService userService;
+    private ScheduleService scheduleService;
     @Test
 
     void contextLoads() {
-//        System.out.println(userMapper.queryUserById(10001));
-        User user = new User();
-        user.setUAccount("12");
-        user.setUPassword("123");
-        user.setUName("13");
-//        System.out.println(userMapper.insert(user));
-//        userMapper.insert(user);
-//        System.out.println(userMapper.selectList(null));
-//        LoginVO loginVO = new LoginVO("","admin","123456");
-//        System.out.println(userService.login(loginVO));
-//        System.out.println(userMapper.selectById(10001));
+//        String result = "<p style=\"line-height: 1;\">asfdfgasg</p>\n" +
+//                "<p style=\"line-height: 1;\">aaaaaaa</p>";
+//        OptionsBuilder optionsBuilder = OptionsBuilder.anOptions();
+//        Options options = optionsBuilder.withBr("-")
+//                // more options
+//                .build();
+//        CopyDown converter = new CopyDown(options);
+//        String markdown = converter.convert(result);
+//        System.out.println(markdown);
+        String[] sA={"0","1"};
+        String[] sA2={"0","1"};
+        int rtn=0;
+        for(int i=0;i<sA.length;i++){
+            for(int j=0;j<sA2.length;j++){
+                if ("1".equals(sA[i])&&"0".equals(sA2[j])){
+                    continue;
+                }else {
+                    rtn++;
+                }
+            }
+        }
+        System.out.println(rtn);
+
 
     }
 

@@ -19,17 +19,7 @@
             <option name="moduleName" value="CloudNote" />
             <option name="modulePath" value="$PROJECT_DIR$" />
             <option name="moduleUIInfoList">
-              <list>
-                <ModuleInfoGo>
-                  <option name="basePath" value="${domain.basePath}" />
-                  <option name="configName" value="mapperInterface" />
-                  <option name="encoding" value="${domain.encoding}" />
-                  <option name="fileName" value="${domain.fileName}Mapper" />
-                  <option name="fileNameWithSuffix" value="${domain.fileName}Mapper.java" />
-                  <option name="modulePath" value="$PROJECT_DIR$" />
-                  <option name="packageName" value="${domain.basePackage}.mapper" />
-                </ModuleInfoGo>
-              </list>
+              <list />
             </option>
             <option name="needToStringHashcodeEquals" value="true" />
             <option name="needsComment" value="true" />
@@ -38,8 +28,8 @@
             <option name="tableUIInfoList">
               <list>
                 <TableUIInfo>
-                  <option name="className" value="Collection" />
-                  <option name="tableName" value="collection" />
+                  <option name="className" value="Schedule" />
+                  <option name="tableName" value="schedule" />
                 </TableUIInfo>
               </list>
             </option>

@@ -42,8 +42,9 @@ public class ScheduleController {
     }
 
     @PostMapping("/querySchedule")
-    public Result querySchedule(){
-        List<Schedule> schedules = scheduleService.querySchedule();
+    public Result querySchedule(String data){
+//        System.out.println(data);
+        List<Schedule> schedules = scheduleService.querySchedule(data);
         return Result.ok(schedules);
     }
 
@@ -54,5 +55,11 @@ public class ScheduleController {
         Map<String,String> map = new HashMap<String,String>();
         map.put("msg",msg);
         return Result.ok(map);
+    }
+
+    @PostMapping("/getSchedule")
+    public Result getSchedule(long id){
+        Schedule schedule=scheduleService.getSchedule(id);
+        return Result.ok(schedule);
     }
 }
