@@ -23,8 +23,8 @@ mybatis-plus:
 
 #操作oss需要的一些参数
 aliyun:
-  accessKeyId: LTAI5tKe3Bnt3hY3hm6jzd5z       # 阿里云的accessKeyId
-  secretAccessKey: D1XncWLHDcHDj6gp0zsGraZgNTzgSC   # accessKey 密码
+  accessKeyId:       # 阿里云的accessKeyId
+  secretAccessKey:    # accessKey 密码
   oss:
     endPoint: oss-cn-hangzhou.aliyuncs.com     # Endpoint:在阿里云oss控制台查看自己使用的endpoint
     bucketName: lcloudnote   # bucket 名称
