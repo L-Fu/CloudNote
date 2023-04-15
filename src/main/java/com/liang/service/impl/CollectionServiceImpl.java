@@ -1,6 +1,7 @@
 package com.liang.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.liang.exception.MyException;
 import com.liang.mapper.CollectionMapper;
 import com.liang.mapper.UserMapper;
 import com.liang.pojo.Collection;
@@ -14,6 +15,9 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+
+import static com.liang.enums.StatusCodeEnum.COLLECTION_REPEAT_ERROR;
 
 @Service
 public class CollectionServiceImpl implements CollectionService {
@@ -26,13 +30,20 @@ public class CollectionServiceImpl implements CollectionService {
 
     @Override
     public int addCollection(Note note) {
+        QueryWrapper<Collection> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("OriginalNoteId",note.getNoteId());
+        Collection collection1 = collectionMapper.selectOne(queryWrapper);
+        if (!Objects.isNull(collection1)){
+            throw new MyException(COLLECTION_REPEAT_ERROR);
+        }
         Collection collection = new Collection();
-        collection.setOriginalUID(note.getUid());
+        collection.setOriginalUId(note.getUid());
         collection.setNoteTitle(note.getNoteTitle());
         collection.setNoteContent(note.getNoteContent());
-        collection.setClassificID(note.getClassificID());
-        collection.setUid(UserHolder.getId());
+        collection.setOriginalNoteId(note.getNoteId());
+        collection.setUId(UserHolder.getId());
         collection.setType(note.getType());
+        collection.setNoteHtml(note.getNoteHtml());
         Date day=new Date();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         LocalDateTime time = LocalDateTime.parse(df.format(day));

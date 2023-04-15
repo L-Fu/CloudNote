@@ -42,7 +42,6 @@ public class NoteController {
 
     @PostMapping("/update")
     public Result updeteNote(Note note){
-//        System.out.println(note);
         int i = noteService.updateNote(note);
         Map<String,String> map = new HashMap<>();
         map.put("msg","更新 "+i+" 笔记");
@@ -59,17 +58,16 @@ public class NoteController {
     @RequestMapping("/queryNoteList")
     @ResponseBody
     public Result queryNoteList(long classId){
-//        response.setHeader("Access-Control-Allow-Origin", "*");
         List<NoteTitle> noteTitles = noteService.queryNoteList(classId);
         return Result.ok(noteTitles);
     }
 
-    @PostMapping("/shareNote")
-    public Result shareNote(String noteId){
-//        System.out.println(noteId);
-        HashMap<String, Long> map = new HashMap<>();
-        map.put("shareNoteId",noteService.shareNote(Long.parseLong(noteId)));
-        return Result.ok(map);
-    }
+
+//    @PostMapping("/shareNote")
+//    public Result shareNote(long noteId){
+//        HashMap<String, String> map = new HashMap<>();
+//        map.put("shareNoteId",noteService.shareNote(noteId));
+//        return Result.ok(map);
+//    }
 
 }

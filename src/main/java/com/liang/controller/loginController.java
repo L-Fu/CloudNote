@@ -23,6 +23,9 @@ import java.util.concurrent.TimeUnit;
 import static com.liang.constant.RedisPrefixConst.CAPTCHA_CODE_TTL;
 
 
+/**
+ * @author Liang
+ */
 @CrossOrigin
 @Controller
 @RequestMapping("/nologin")
@@ -38,9 +41,6 @@ public class loginController {
     public Result login(LoginVO loginVO, HttpServletResponse response){
         System.out.println(loginVO);
         String token = userService.login(loginVO);
-//        Cookie cookie = new Cookie("token",token);
-//        cookie.setMaxAge((int) TimeUnit.DAYS.toSeconds(CAPTCHA_CODE_TTL));
-//        response.addCookie(cookie);
         HashMap<String,String> map=new HashMap<>();
         map.put("token",token);
         return Result.ok(map);
@@ -49,33 +49,15 @@ public class loginController {
     @PostMapping("/logout")
     @ResponseBody
     public Result logOut(HttpServletResponse response, HttpServletRequest request){
-//        Cookie[] cookies = request.getCookies();
-////        System.out.println(Arrays.toString(cookies));
-//        Cookie isCookie = null;
-//        for (Cookie cookie : cookies){
-//            if (cookie.getName().contentEquals("token")){
-//                isCookie = cookie;
-//            }
-//        }
-//        if (isCookie  == null){
-//            assert false;
-//            String token = isCookie.getValue();
-//            stringRedisTemplate.delete(token);
-//        }
-
-//        redisTemplate.delete()
-//        Cookie cookie = new Cookie("token","");
-//        cookie.setMaxAge(0);
-//        response.addCookie(cookie);
         String token = request.getHeader("authorization");
         stringRedisTemplate.delete(token);
         UserHolder.saveUser(new UserDTO());
-        return Result.ok();
+        return Result.ok("登出成功");
     }
 
     @PostMapping("/addUser")
     @ResponseBody
-    public Result addUsrer( User user){
+    public Result addUser( User user){
 //        System.out.println(uid);
 //        System.out.println(uid);
 //        JSONObject userJson = JSONObject.parseObject(uid);

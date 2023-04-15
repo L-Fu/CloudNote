@@ -12,5 +12,4 @@ public interface NoteService {
     int addNote(Note note);
     List<NoteTitle> queryNoteList(long classId);
     Note queryNoteById(long noteId);
-    long shareNote(long noteId);
 }

@@ -61,6 +61,8 @@ public class Recyclebin implements Serializable {
 
     private int type;
 
+    private String noteHtml;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 

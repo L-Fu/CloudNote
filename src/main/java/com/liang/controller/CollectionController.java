@@ -31,10 +31,36 @@ public class CollectionController {
     @Resource
     private NoteMapper noteMapper;
 
-    @GetMapping("/addCollection")
-    public Result addCollection(long noteRandId){
-        String noteId = stringRedisTemplate.opsForValue().get(String.valueOf(noteRandId));
-//        System.out.println(noteId);
+    /**
+     * 功能描述:
+     * TODO
+     * @param noteId
+     * @return com.liang.vo.Result
+     * @author Liang
+     * @date 2022/10/27 15:38
+    */
+    @PostMapping("/addCollection")
+    public Result addCollection(long noteId){
+        Note note = noteMapper.selectById(noteId);
+        if(Objects.isNull(note)){
+            HashMap<String,String> map = new HashMap<>();
+            map.put("msg","原笔记已被删除");
+            return Result.fail(map);
+        }
+        int i = collectionService.addCollection(note);
+        return Result.ok("成功添加"+i+"收藏");
+    }
+    /**
+     * 功能描述:
+     * TODO
+     * @param str
+     * @return com.liang.vo.Result
+     * @author Liang
+     * @date 2022/10/27 15:34
+    */
+    @PostMapping("/getNote")
+    public Result getCollectionNote(String str){
+        String noteId = stringRedisTemplate.opsForValue().get(str);
         if (Objects.isNull(noteId)){
             throw new MyException(SHARE_NOTE_ERROR);
         }else {
@@ -44,16 +70,21 @@ public class CollectionController {
                 map.put("msg","原笔记已被删除");
                 return Result.fail(map);
             }
-            collectionService.addCollection(note);
+            return Result.ok(note);
         }
-        return Result.ok();
     }
-
+    /**
+     * 功能描述:
+     * TODO
+     * @param ids 删除的收藏ID
+     * @return com.liang.vo.Result
+     * @author Liang
+     * @date 2022/10/27 15:38
+    */
     @PostMapping("/delCollection")
     public Result delCollection(String ids){
         long id = Long.parseLong(ids);
         List<Long> idList= Collections.singletonList(id);
-//        List<Long> idList = Arrays.stream(ids).boxed().collect(Collectors.toList());
         int i = collectionService.delCollection(idList);
         String msg = "成功删除"+i+"收藏";
         return Result.ok(msg);

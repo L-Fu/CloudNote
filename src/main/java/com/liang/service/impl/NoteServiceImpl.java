@@ -23,6 +23,9 @@ import static com.liang.constant.RedisPrefixConst.SHARE_NOTE;
 import static com.liang.enums.StatusCodeEnum.POST_NOT_EXIST;
 
 
+/**
+ * @author Liang
+ */
 @Service
 public class NoteServiceImpl implements NoteService {
 
@@ -42,7 +45,18 @@ public class NoteServiceImpl implements NoteService {
         return noteMapper.selectList(queryWrapper);
     }
 
+
     @Override
+    /*/**
+     * 功能描述:
+     * TODO
+     *
+      * @param note
+     * @return int
+     * @author JohanChan
+     * @date 2022/10/25 10:41
+     */
+
     public int updateNote(Note note) {
         Date day=new Date();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
@@ -70,12 +84,21 @@ public class NoteServiceImpl implements NoteService {
             recyclebin.setModifiTime(note.getModifiTime());
             recyclebin.setUid(note.getUid());
             recyclebin.setType(note.getType());
+            recyclebin.setNoteHtml(note.getNoteHtml());
             i += recycleBinService.addRecycleBinNote(recyclebin);
         }
         return noteMapper.deleteBatchIds(noteIds);
     }
 
     @Override
+     /**
+     * 功能描述:
+     * TODO
+     * @param note
+     * @return int
+     * @author Liang
+     * @date 2022/10/25 11:21
+     */
     public int addNote(Note note) {
         Date day=new Date();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
@@ -102,19 +125,7 @@ public class NoteServiceImpl implements NoteService {
         return noteMapper.selectById(noteId);
     }
 
-    @Override
-    public long shareNote(long noteId) {
-        Note note = noteMapper.selectById(noteId);
-        if(Objects.isNull(note)){
-            throw new MyException(POST_NOT_EXIST);
-        }
-        Random rand = new Random();
-        long i = rand.nextLong();
-        stringRedisTemplate.opsForValue().set(String.valueOf(i), String.valueOf(noteId));
-        // 设置过期时间
-        stringRedisTemplate.expire(String.valueOf(i),SHARE_NOTE, TimeUnit.DAYS);
-        return i;
-    }
+
 
 
 }

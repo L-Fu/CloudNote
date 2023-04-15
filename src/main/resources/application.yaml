@@ -7,6 +7,9 @@ spring:
   servlet:
     multipart:
       max-file-size: 5MB
+  elasticsearch:
+    uris: http://localhost:9200
+
 
 
 mybatis:
@@ -26,3 +29,14 @@ aliyun:
     endPoint: oss-cn-hangzhou.aliyuncs.com     # Endpoint:在阿里云oss控制台查看自己使用的endpoint
     bucketName: lcloudnote   # bucket 名称
 
+elasticsearch:
+  host: localhost
+  port: 9200
+
+#yml配置
+logging:
+  config: classpath:log/logback-spring.xml
+  level:
+    root: info
+  file:
+    path: ./log

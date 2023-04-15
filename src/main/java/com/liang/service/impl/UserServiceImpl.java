@@ -35,14 +35,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String login(LoginVO loginVO) {
-        System.out.println("loginVO");
         System.out.println(loginVO);
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("uAccount",loginVO.getAccount());
-//        System.out.println("登录的用户为："+loginVO.getUserName());
         User user = userMapper.selectOne(queryWrapper);
-//        System.out.println("user");
-//        System.out.println(user);
         if(Objects.isNull(user)){
             throw new MyException(USERNAME_NOT_EXIST);
         }else if(!user.getUPassword().equals(loginVO.getPassword())){
@@ -73,7 +69,7 @@ public class UserServiceImpl implements UserService {
         UserDTO userDTO = new UserDTO();
         User user = userMapper.selectById(UserHolder.getId());
 //        System.out.println(user);
-        userDTO.setAccount(user.getUAccount());
+        userDTO.setUAccount(user.getUAccount());
         userDTO.setIcon(user.getIcon());
         userDTO.setUDesc(user.getUDesc());
         userDTO.setUName(user.getUName());
@@ -125,6 +121,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public String updateUser(User user) {
         user.setUId(UserHolder.getId());
+        System.out.println(user);
+        System.out.println(userMapper.updateById(user));
         if(userMapper.updateById(user) == 1){
             return "操作成功";
         }else {

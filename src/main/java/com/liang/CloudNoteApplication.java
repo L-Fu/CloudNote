@@ -10,7 +10,6 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
  */
 @MapperScan("com.liang.mapper")
 @SpringBootApplication
-//@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 public class CloudNoteApplication {
 
     public static void main(String[] args) {

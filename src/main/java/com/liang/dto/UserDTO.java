@@ -22,7 +22,7 @@ public class UserDTO {
     /**
      * 账号
      */
-    private String account;
+    private String uAccount;
     /**
      * 用户简介
      */

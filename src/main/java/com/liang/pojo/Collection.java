@@ -26,17 +26,17 @@ public class Collection implements Serializable {
     /**
      *
      */
-    private Long uid;
+    private Long uId;
 
     /**
      *
      */
-    private Long originalUID;
+    private Long originalUId;
 
     /**
      *
      */
-    private Long classificID;
+    private Long originalNoteId;
 
     /**
      *
@@ -59,6 +59,7 @@ public class Collection implements Serializable {
     private String modifiTime;
     private int type;
 
+    private String noteHtml;
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 

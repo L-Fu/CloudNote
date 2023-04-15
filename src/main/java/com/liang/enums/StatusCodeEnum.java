@@ -75,9 +75,11 @@ public enum StatusCodeEnum {
     POST_NOT_EXIST(520935, "笔记不存在"),
     /**
      *
-     * 删除失败
+     * 分享链接失效
      */
-    SHARE_NOTE_ERROR(52223,"链接失效");
+    SHARE_NOTE_ERROR(52223,"链接失效"),
+
+    COLLECTION_REPEAT_ERROR(53001,"此笔记收藏已存在");
 
 
 

@@ -47,6 +47,8 @@ public class RecycleBinServiceImpl implements RecycleBinService {
             note.setCraeteTime(recyclebin.getCraeteTime());
             note.setModifiTime(recyclebin.getModifiTime());
             note.setUid(recyclebin.getUid());
+            note.setType(recyclebin.getType());
+            note.setNoteHtml(recyclebin.getNoteHtml());
             recyclebinMapper.deleteById(recyclebinId);
             i += noteMapper.insert(note);
         }

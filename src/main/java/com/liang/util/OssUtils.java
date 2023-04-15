@@ -38,9 +38,7 @@ public class OssUtils {
         try {
             // 创建PutObject请求。
             ossClient.putObject(bucketName, fileName, file.getInputStream());
-
             String url = "http://" + bucketName + "." + endPoint + "/" + fileName;
-//            System.out.println(url);
             return url;
         } catch (Exception e) {
             e.printStackTrace();
@@ -67,7 +65,6 @@ public class OssUtils {
                 ossClient.putObject(bucketName, fileName, file.getInputStream());
 
                 String url = "http://" + bucketName + "." + endPoint + "/" + fileName;
-//                System.out.println(url);
                 list.add(url);
             }
 
@@ -80,7 +77,6 @@ public class OssUtils {
             }
         }
         return list;
-
     }
 
     public boolean deleteFile(String fileUrl) {
